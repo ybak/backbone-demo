@@ -8,14 +8,14 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -39,14 +39,15 @@
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="lib/jquery-1.8.2.min.js"></script>
-<script src="lib/underscore-min.js"></script>
-<script src="lib/backbone-min.js"></script>
-<script src="lib/bootstrap.min.js"></script>
-<script src="lib/bootstrap.min.js"></script>
+<script src="/lib/jquery-1.8.2.min.js"></script>
+<script src="/lib/underscore-min.js"></script>
+<script src="/lib/backbone-min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
 
-<script src="js/views.js"></script>
-<script src="js/router.js"></script>
+<script src="/js/models.js"></script>
+<script src="/js/views.js"></script>
+<script src="/js/router.js"></script>
 
 <script type="text/template" id="header-template">
 <div class="navbar navbar-inverse navbar-fixed-top" style="z-index: 10;">
@@ -62,12 +63,12 @@
             <div class="nav-collapse collapse">
 
                 <ul class="nav">
-                    <li class="browse-wines"><a href="/wines">Browse Wines</a></li>
-                    <li class="add-menu"><a href="/wines/add"><i class="icon-edit icon-white"></i> Add Wine</a></li>
+                    <li class="browse-wines"><a href="/home/wines">Browse Wines</a></li>
+                    <li class="add-menu"><a href="/home/wines/add"><i class="icon-edit icon-white"></i> Add Wine</a></li>
                 </ul>
 
                 <ul class="nav pull-right">
-                    <li class="about-menu"><a href="/about">About</a></li>
+                    <li class="about-menu"><a href="/home/about">About</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -96,12 +97,12 @@
     <h3>A sample application built with Backbone.js, Twitter Bootstrap, Node.js, Express, and MongoDB</h3>
     <br/>
     <div style="opacity: .9;">
-        <a class="btn btn-large" href="/wines"><img src="img/wine.png" class="pull-left" style="margin-right:6px;"/> Start Browsing<br/>Node Cellar</a>
+        <a class="btn btn-large" href="/home/wines"><img src="img/wine.png" class="pull-left" style="margin-right:6px;"/> Start Browsing<br/>Node Cellar</a>
         <a class="btn btn-large" href="#">
             <img src="img/github.png" class="pull-left" style="margin-right:6px"/> View Project<br>on GitHub</a>
     </div>
 </div>
-
+<!-- 
 <div class="bs-docs-social">
   <div class="container">
     <ul class="bs-docs-social-buttons">
@@ -114,11 +115,12 @@
     </ul>
   </div>
 </div>
+-->
 </script>
 <script type="text/template" id="about-template">
 <div class="row-fluid">
     <div class="span12">
-        <img class="about-icon" src="img/download.png" width="50">
+        <img class="about-icon" src="/img/download.png" width="50">
         <h4>Download the source code</h4>
         <p>The source code for this application is available in <a href="https://github.com/ccoenraets/nodecellar">this repository</a> on GitHub.</p>
     </div>
@@ -126,7 +128,7 @@
 <br/>
 <div class="row-fluid">
     <div class="span12">
-        <img class="about-icon" src="img/discuss.png" width="50" style="float: left;">
+        <img class="about-icon" src="/img/discuss.png" width="50" style="float: left;">
         <h4>Comments and questions</h4>
         <p>I love to hear your feedback. Post your questions and comments on the blog post associated with this
             application.</p>
@@ -135,7 +137,7 @@
 <br/>
 <div class="row-fluid">
     <div class="span12">
-        <img class="about-icon" src="img/twitter.png" width="50" style="float: left;">
+        <img class="about-icon" src="/img/twitter.png" width="50" style="float: left;">
         <h4>Follow me on Twitter</h4>
         <p><a href="http://twitter.com/ccoenraets">@ccoenraets</a></p>
     </div>
@@ -143,12 +145,19 @@
 <br/>
 <div class="row-fluid">
     <div class="span12">
-        <img class="about-icon" src="img/blog.png" width="50" style="float: left;">
+        <img class="about-icon" src="/img/blog.png" width="50" style="float: left;">
         <h4>Check out my blog</h4>
         <p><a href="http://coenraets.org">http://coenraets.org</a></p>
     </div>
 </div>
 </script>
-
+<script type="text/template" id="list-item-template">
+<a href="/wines/<%= _id %>" class="thumbnail plain" style="text-align: center;">
+    <img src="<%= picture === null ? '/pics/generic.jpg' : '/pics/' + picture %>" height="150" width="125" alt="">
+    <h5><%= name %></h5>
+    <%= year %> <%= grapes %><br/>
+    <i class="icon-globe"></i> <%= region %>, <%= country %>
+</a>
+</script>
 </body>
 </html>
