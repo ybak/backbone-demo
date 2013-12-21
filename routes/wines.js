@@ -33,8 +33,18 @@ exports.findAll = function(req, res) {
 
 exports.findById = function(req, res) {
     var id = req.params.id;
-    Wind.findById(id, function(err, wine){
+    Wine.findById(id, function(err, wine){
        res.send(wine); 
+    });
+};
+
+exports.create = function(req, res) {
+    var newWine = req.body;
+    delete newWine._id;
+    console.log('Adding wine: ' + JSON.stringify(newWine));
+    Wine.create(newWine, function(err, doc) {
+        console.log('wine added.'+ JSON.stringify(doc));
+        res.send(doc);
     });
 };
 

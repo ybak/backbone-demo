@@ -23,6 +23,7 @@ app.configure('development', function(){
 
 app.get('/api/wines', wines.findAll);
 app.get('/api/wines/:id', wines.findById);
+app.post('/api/wines', wines.create);
 app.get('/home/*',  function(req, res){
     res.sendfile(__dirname+'/public/index.html');
 });

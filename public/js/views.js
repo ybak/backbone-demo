@@ -34,10 +34,28 @@ $(function() {
         }
     });
     window.WineView = Backbone.View.extend({
+        events : {
+            "change"            : "change",
+            "click .save"       : "save"
+        },
         template : _.template($('#wine-template').html()),
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
             return this;
+        },
+        change: function(event){
+            var change = {};
+            var target = event.target;
+            change[target.name] = target.value;
+            this.model.set(change);
+        },
+        save: function() {
+            self = this;
+            this.model.save().success(function(){
+                self.render();
+                app.navigate('home/wines/' + self.model.id, false);
+                utils.showAlert('Success!', 'Wine saved successfully', 'alert-success');
+            });
         }
     });
     window.WineListView = Backbone.View.extend({

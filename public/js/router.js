@@ -5,8 +5,8 @@ $(function() {
 			"home/about"                : "about",
 			"home/wines"                : "list",
 			"home/wines/page/:page"     : "list",
-			"home/wines/:id"            : "wineDetails",
-		    "home/wines/add"            : "add"
+			"home/wines/add"            : "add",
+			"home/wines/:id"            : "wineDetails"
 		},
 
 		initialize : function() {
@@ -41,19 +41,19 @@ $(function() {
 			});
 			this.headerView.selectMenuItem('browse-wines');
 		},
-		
+
 		wineDetails : function(id) {
             var wine = new Wine({_id: id});
             wine.fetch({success:function(){
                 $('#content').html(new WineView({model: wine}).render().el);
             }});
-            this.headerView.selectMenuItem();
+            this.headerView.selectMenuItem('browse-wines');
         },
         
 		add : function() {    
 		    var wine = new Wine();
 	        $('#content').html(new WineView({model: wine}).render().el);
-		    this.headerView.selectMenuItem();
+		    this.headerView.selectMenuItem('add-menu');
 		}
 	});
 

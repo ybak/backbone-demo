@@ -8,7 +8,7 @@ $(function() {
             grapes : "",
             country : "USA",
             region : "California",
-            year : "",
+            year : "2012",
             description : "",
             picture : null
         }
