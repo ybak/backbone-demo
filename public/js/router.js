@@ -48,7 +48,13 @@ $(function() {
                 $('#content').html(new WineView({model: wine}).render().el);
             }});
             this.headerView.selectMenuItem();
-        }
+        },
+        
+		add : function() {    
+		    var wine = new Wine();
+	        $('#content').html(new WineView({model: wine}).render().el);
+		    this.headerView.selectMenuItem();
+		}
 	});
 
 	window.app = new AppRouter();
