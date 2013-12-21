@@ -22,6 +22,7 @@ app.configure('development', function(){
 });
 
 app.get('/api/wines', wines.findAll);
+app.get('/api/wines/:id', wines.findById);
 app.get('/home/*',  function(req, res){
     res.sendfile(__dirname+'/public/index.html');
 });

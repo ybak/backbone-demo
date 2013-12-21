@@ -1,11 +1,12 @@
 $(function() {
 	var AppRouter = Backbone.Router.extend({
 		routes : {
-			""                           : "home",
+			""                          : "home",
 			"home/about"                : "about",
 			"home/wines"                : "list",
-			"home/wines/page/:page"     : "list"
-
+			"home/wines/page/:page"     : "list",
+			"home/wines/:id"            : "wineDetails",
+		    "home/wines/add"            : "add"
 		},
 
 		initialize : function() {
@@ -39,7 +40,15 @@ $(function() {
 				}).render().el);
 			});
 			this.headerView.selectMenuItem('browse-wines');
-		}
+		},
+		
+		wineDetails : function(id) {
+            var wine = new Wine({_id: id});
+            wine.fetch({success:function(){
+                $('#content').html(new WineView({model: wine}).render().el);
+            }});
+            this.headerView.selectMenuItem();
+        }
 	});
 
 	window.app = new AppRouter();

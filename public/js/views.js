@@ -33,6 +33,13 @@ $(function() {
             return this;
         }
     });
+    window.WineView = Backbone.View.extend({
+        template : _.template($('#wine-template').html()),
+        render : function() {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    });
     window.WineListView = Backbone.View.extend({
         initialize : function(options) {
             this.page = options.page;

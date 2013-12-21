@@ -1,5 +1,6 @@
 $(function() {
 	window.Wine = Backbone.Model.extend({
+	    urlRoot: "/api/wines",
 		idAttribute: "_id"
 	});
 	
