@@ -35,8 +35,9 @@ $(function() {
     });
     window.WineView = Backbone.View.extend({
         events : {
-            "change"            : "change",
-            "click .save"       : "save"
+            "change"                 : "change",
+            "click .save"           : "save",
+            "click .delete"         : "delete"
         },
         template : _.template($('#wine-template').html()),
         render : function() {
@@ -55,6 +56,12 @@ $(function() {
                 self.render();
                 app.navigate('home/wines/' + self.model.id, false);
                 utils.showAlert('Success!', 'Wine saved successfully', 'alert-success');
+            });
+        },
+        delete: function(){
+            this.model.destroy().success(function(){
+                alert('Wine deleted successfully');
+                app.navigate('home/wines', true);
             });
         }
     });

@@ -48,6 +48,14 @@ exports.updateWine = function (req, res) {
     });
 };
 
+exports.deleteWine = function (req, res) {
+    var wineId = req.params.id;
+    Wine.remove({ _id: wineId }, function (err, wine, numberAffected) {
+        console.log(numberAffected + ' wines deleted');
+        res.send(req.body);
+    });
+};
+
 exports.create = function(req, res) {
     var newWine = req.body;
     delete newWine._id;
