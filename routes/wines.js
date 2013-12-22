@@ -38,6 +38,16 @@ exports.findById = function(req, res) {
     });
 };
 
+exports.updateWine = function (req, res) {
+    var wine = req.body;
+    var wineId = wine._id;
+    delete wine._id;
+    Wine.update({ _id: wineId }, wine, function (err, numberAffected) {
+        console.log(numberAffected + ' wines updated');
+        res.send(wine);
+    });
+};
+
 exports.create = function(req, res) {
     var newWine = req.body;
     delete newWine._id;

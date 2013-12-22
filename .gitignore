@@ -4,6 +4,4 @@
 /test-result
 /logs
 /eclipse
-/.settings
-/.classpath
-/.project
+.idea
