@@ -54,14 +54,14 @@ $(function() {
             this.model.set(change);
         },
         save: function () {
-            self = this;
-            this.model.save({success: function () {
+            var self = this;
+            var valid = this.model.save().done(function(model){
                 self.render();
                 app.navigate('home/wines/' + self.model.id, false);
                 utils.showAlert('Success!', 'Wine saved successfully', 'alert-success');
-            }, error: function () {
-                utils.showAlert('Error!', 'Wine saved failed.', 'alert-success');
-            }});
+            }).fail(function(){
+                    utils.showAlert('Error!', 'Wine saved failed.', 'alert-error');
+            });
         },
         delete: function(){
             this.model.destroy().success(function(){
@@ -81,7 +81,6 @@ $(function() {
         invalid: function (view, attr, error, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.control-group');
-
             $group.addClass('error');
             $group.find('.help-inline').html(error).removeClass('hidden');
         }

@@ -23,7 +23,7 @@ app.configure('development', function(){
 
 app.get('/api/wines', wines.findAll);
 app.get('/api/wines/:id', wines.findById);
-app.put('/api/wines', wines.updateWine);
+app.put('/api/wines/:id', wines.updateWine);
 app.delete('/api/wines/:id', wines.deleteWine);
 app.post('/api/wines', wines.create);
 app.get('/home/*',  function(req, res){
