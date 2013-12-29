@@ -40,6 +40,9 @@ $(function() {
             "click .delete"         : "delete"
         },
         template : _.template($('#wine-template').html()),
+        initialize: function () {
+            Backbone.Validation.bind(this);
+        },
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
             return this;
@@ -50,13 +53,15 @@ $(function() {
             change[target.name] = target.value;
             this.model.set(change);
         },
-        save: function() {
+        save: function () {
             self = this;
-            this.model.save().success(function(){
+            this.model.save({success: function () {
                 self.render();
                 app.navigate('home/wines/' + self.model.id, false);
                 utils.showAlert('Success!', 'Wine saved successfully', 'alert-success');
-            });
+            }, error: function () {
+                utils.showAlert('Error!', 'Wine saved failed.', 'alert-success');
+            }});
         },
         delete: function(){
             this.model.destroy().success(function(){
@@ -65,6 +70,23 @@ $(function() {
             });
         }
     });
+    _.extend(Backbone.Validation.callbacks, {
+        valid: function (view, attr, selector) {
+            var $el = view.$('[name=' + attr + ']'),
+                $group = $el.closest('.control-group');
+
+            $group.removeClass('error');
+            $group.find('.help-block').html('').addClass('hidden');
+        },
+        invalid: function (view, attr, error, selector) {
+            var $el = view.$('[name=' + attr + ']'),
+                $group = $el.closest('.control-group');
+
+            $group.addClass('error');
+            $group.find('.help-block').html(error).removeClass('hidden');
+        }
+    });
+
     window.WineListView = Backbone.View.extend({
         initialize : function(options) {
             this.page = options.page;
