@@ -9,12 +9,12 @@ $(function() {
             },
             grapes: {
                 required: true,
-                msg: 'You must enter a grape variety"'
+                msg: 'You must enter a grape variety'
 
             },
             country: {
                 required: true,
-                msg: '"You must enter a country"'
+                msg: '"You must enter a country'
 
             }
         },

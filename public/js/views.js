@@ -76,14 +76,14 @@ $(function() {
                 $group = $el.closest('.control-group');
 
             $group.removeClass('error');
-            $group.find('.help-block').html('').addClass('hidden');
+            $group.find('.help-inline').html('').addClass('hidden');
         },
         invalid: function (view, attr, error, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.control-group');
 
             $group.addClass('error');
-            $group.find('.help-block').html(error).removeClass('hidden');
+            $group.find('.help-inline').html(error).removeClass('hidden');
         }
     });
 
